@@ -1,0 +1,5 @@
+django-browser-reload
+django-tailwind
+django-restframwork
+django-filters
+django-corsheaders

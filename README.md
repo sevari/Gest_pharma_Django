@@ -29,6 +29,13 @@ Installation tailwindcss
 ```bash
  npm install -D tailwindcss
 ```
+
+Installation des dependance de django
+
+```bash
+ pip install -r requirements.txt
+```
+
     
 ## Comment travailler avec git ?
 

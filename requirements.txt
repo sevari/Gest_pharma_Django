@@ -1,6 +1,5 @@
 django-browser-reload
 django-tailwind
-djangorestframwork
-markdown
-django-filter
-django-cors-headers
+django-restframework
+django-filters
+django-corsheaders

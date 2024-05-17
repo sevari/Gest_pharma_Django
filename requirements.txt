@@ -1,5 +1,5 @@
 django-browser-reload
 django-tailwind
-django-restframwork
+django-restframework
 django-filters
 django-corsheaders

@@ -3,5 +3,4 @@ django-tailwind
 djangorestframwork
 markdown
 django-filter
-django-corsheaders
 django-cors-headers

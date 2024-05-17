@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     'theme',
     'acceuil',
     'administrateur',
-   'rest_framework',
+    'rest_framework',
     'corsheaders',
     'django_filters'
     
@@ -58,7 +58,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     "django_browser_reload.middleware.BrowserReloadMiddleware",
-     "corsheaders.middleware.CorsMiddleware",# new
+    "corsheaders.middleware.CorsMiddleware",# new
     "django.middleware.common.CommonMiddleware", # new
 
 ]

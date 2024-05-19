@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Commande de Médicaments</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        .bg-primary { background-color: #006ee6; }
+        .bg-secondary { background-color: #0055b3; }
+        .bg-accent { background-color: #004999; }
+    </style>
+    
+    
+    
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+    <header class="bg-primary py-6">
+        <div class="container mx-auto px-4 md:px-6">
+            <h1 class="text-white text-4xl font-bold">Fanafodiko</h1>
+        </div>
+    </header>
+
+    <section class="py-24 relative">
+        <div class="w-full max-w-7xl px-4 md:px-5 lg:px-6 mx-auto">
+            <h2 class="title font-manrope font-bold text-4xl leading-10 mb-8 text-center text-black">Commande de Médicaments</h2>
+
+             <!-- Liste des Fournisseurs -->
+             <!-- Liste des Fournisseurs -->
+<div class="bg-white rounded-xl p-6 mb-8 shadow-md">
+    <h3 class="font-manrope font-bold text-2xl leading-9 mb-6 text-black">Liste des Fournisseurs</h3>
+    <div class="mb-4">
+        <form method="post">
+            {% csrf_token %}
+            <label for="supplier" class="block text-lg font-medium text-gray-700">Sélectionner un Fournisseur</label>
+            <select id="supplier" name="supplier" class="w-full p-4 border border-gray-300 rounded-lg focus:outline-none focus:border-primary">
+                <option value="">Sélectionner un fournisseur...</option>
+                {% for fournisseur in fournisseurs %}
+                    <option value="{{ fournisseur.NIF }}">{{ fournisseur.nom }}</option>
+                {% endfor %}
+            </select>
+            <input type="submit" value="Sélectionner" class="mt-4 px-6 py-3 bg-secondary text-white rounded-lg">
+        </form>
+    </div>
+    
+    {% if fournisseur_selectionne_details %}
+        <div class="mt-6 text-lg text-gray-700">
+            <p><strong>NIF:</strong> {{ fournisseur_selectionne_details.NIF }}</p>
+            <p><strong>Nom:</strong> {{ fournisseur_selectionne_details.Nom }}</p>
+            <p><strong>Adresse:</strong> {{ fournisseur_selectionne_details.Adresse }}</p>
+            <p><strong>Téléphone:</strong> {{ fournisseur_selectionne_details.Téléphone }}</p>
+            <p><strong>Email:</strong> {{ fournisseur_selectionne_details.Email }}</p>
+        </div>
+    {% endif %}
+</div>
+
+
+            <!-- Formulaire de Commande et Total Prix d'Achat -->
+            <div id="order-section" {% if not fournisseur_selectionne_details %}class="hidden"{% endif %}>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Formulaire de Commande -->
+                    <div class="bg-white rounded-xl p-6 mb-8 shadow-md">
+                        <h3 class="font-manrope font-bold text-2xl leading-9 mb-6 text-black">Formulaire de Commande</h3>
+                        <form id="order-form">
+                            <!-- Recherche de Médicaments -->
+                            <div class="mb-4">
+                                <label for="search" class="block text-lg font-medium text-gray-700">Rechercher des médicaments</label>
+                                <input type="text" id="search" placeholder="Rechercher des médicaments..." class="w-full p-4 border border-gray-300 rounded-lg focus:outline-none focus:border-primary">
+                            </div>
+
+                            <!-- Liste de Médicaments Disponibles -->
+                            <div id="medicament-list" class="mb-8">
+                                <h4 class="font-manrope font-bold text-xl leading-8 mb-4 text-black">Médicaments Disponibles</h4>
+                                <!-- Médicaments disponibles seront affichés ici -->
+                            </div>
+
+                            <!-- Informations de Paiement -->
+                            <div class="mb-4">
+                                <label for="card-name" class="block text-lg font-medium text-gray-700">Nom sur la Carte</label>
+                                <input type="text" id="card-name" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-primary">
+                            </div>
+                            <div class="mb-4">
+                                <label for="card-number" class="block text-lg font-medium text-gray-700">Numéro de la Carte</label>
+                                <input type="text" id="card-number" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-primary">
+                            </div>
+                            <div class="flex mb-4">
+                                <div class="w-1/2 mr-2">
+                                    <label for="card-expiry" class="block text-lg font-medium text-gray-700">Date d'Expiration</label>
+                                    <input type="text" id="card-expiry" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-primary">
+                                </div>
+                                <div class="w-1/2 ml-2">
+                                    <label for="card-cvc" class="block text-lg font-medium text-gray-700">CVC</label>
+                                    <input type="text" id="card-cvc" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-primary">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Total Prix d'Achat -->
+                    <div class="bg-white rounded-xl p-6 mb-8 shadow-md">
+                        <h3 class="font-manrope font-bold text-2xl leading-9 mb-6 text-black">Total Prix d'Achat</h3>
+                        <div class="mb-4">
+                            <label for="total-price" class="block text-lg font-medium text-gray-700">Total Prix d'Achat</label>
+                            <input type="text" id="total-price" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-primary" readonly>
+                        </div>
+                        <div class="mt-12">
+                            <h3 class="font-manrope font-bold text-2xl leading-9 mb-6 text-black">Votre Panier</h3>
+                            <ul id="order-summary">
+                                <!-- Les médicaments sélectionnés seront affichés ici -->
+                            </ul>
+                        </div>
+                        <!-- Autres informations liées au total du prix -->
+                    </div>
+                </div>
+                
+                <!-- Boutons -->
+                <div class="flex justify-end space-x-4">
+                    <button type="button" class="px-6 py-3 bg-accent text-white rounded-lg">Annuler</button>
+                    <button type="submit" class="px-6 py-3 bg-secondary text-white rounded-lg">Confirmer la Commande</button>
+                </div>
+            </div>
+
+            <!-- Historique de Paiement -->
+            <div class="mt-12">
+                <h3 class="font-manrope font-bold text-2xl leading-9 mb-6 text-black">Historique de Paiement</h3>
+                <ul>
+                    <!-- Liste des paiements effectués -->
+                    <li class="mb-2">Paiement 1: $XXX.XX - Date</li>
+                    <li class="mb-2">Paiement 2: $XXX.XX - Date</li>
+                    <!-- Ajoutez d'autres éléments d'historique de paiement ici -->
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-gray-900 text-white py-4">
+        <div class="container mx-auto px-4">
+            <p class="text-center">© 2023 Fanafodiko. Tous droits réservés.</p>
+        </div>
+    </footer>
+</body>
+</html>

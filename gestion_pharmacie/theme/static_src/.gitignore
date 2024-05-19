@@ -1,1 +1,10 @@
-node_modules
+# Ignorer les fichiers de cache Python
+__pycache__/
+*.py[cod]
+
+# Autres fichiers et répertoires à ignorer
+*.log
+*.env
+*.venv
+*.DS_Store
+node_modules/

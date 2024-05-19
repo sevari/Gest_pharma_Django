@@ -1,1 +1,79 @@
-mandeha
+{% load static tailwind_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    {% tailwind_css %}
+</head>  
+<body>
+    <div class="flex h-screen bg-gray-100">
+        <div class="w-64 bg-white shadow-xl">
+            <div class="flex items">
+                <img src="{% static 'images/logo.png' %}" alt="logo" class="w-16 h-16 m-4">
+                <h1 class="text-2xl font-semibold text-gray-800">Pharmacie</h1>
+            </div>
+            <nav class="mt-10">
+                <a href="#" class="flex items-center py-2 px-8 bg-gray-200 text-gray-700 border-r-4 border-gray-700">
+                    <span class="mx-4 font-medium">Dashboard</span>
+                </a>
+                <a href="#" class="flex items-center py-2 px-8 text-gray-600">
+                    <span class="mx-4 font-medium">Produits</span>
+                </a>
+                <a href="#" class="flex items-center py-2 px-8 text-gray-600">
+                    <span class="mx-4 font-medium">Commandes</span>
+                </a>
+                <a href="#" class="flex items-center py-2 px-8 text-gray-600">
+                    <span class="mx-4 font-medium">Clients</span>
+                </a>
+                <a href="#" class="flex items-center py-2 px-8 text-gray-600">
+                    <span class="mx-4 font-medium">Fournisseurs</span>
+                </a>
+                <a href="#" class="flex items-center py-2 px-8 text-gray-600">
+                    <span class="mx-4 font-medium">Utilisateurs</span>
+                </a>
+            </nav>
+        </div>
+        <div class="flex-1">
+            <header class="bg-white shadow">
+                <div class="flex items">
+                    <button class="p-4 focus:outline-none">
+                        <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                        </svg>
+                    </button>
+                    <div class="flex-1">
+                        <input type="search" class="w-full px-4 py-2 border-b-2 border-gray-200 focus:outline-none" placeholder="Search">
+                    </div>
+                    <div>
+                        <img src="{% static 'images/avatar.png' %}" alt="avatar" class="w-10 h-10 rounded-full">
+                    </div>  
+                </div>
+            </header>
+            <main class="p-4">
+                <h1 class="text-2xl font-semibold text-gray-800">Dashboard</h1>
+                <div class="grid grid-cols-2 gap-4 mt-4">
+                    <div class="bg-white p-4 shadow-md rounded-lg">
+                        <h1 class="text-xl font-semibold text-gray-800">Total Produits</h1>
+                        <p class="text-3xl font-semibold text-gray-800">100</p>
+                    </div>
+                    <div class="bg-white p-4 shadow-md rounded-lg">
+                        <h1 class="text-xl font-semibold text-gray-800">Total Commandes</h1>
+                        <p class="text-3xl font-semibold text-gray-800">100</p>
+                    </div>
+                    <div class="bg-white p-4 shadow-md rounded-lg">
+                        <h1 class="text-xl font-semibold text-gray-800">Total Clients</h1>
+                        <p class="text-3xl font-semibold text-gray-800">100</p>
+                    </div>
+                    <div class="bg-white p-4 shadow-md rounded-lg">
+                        <h1 class="text-xl font-semibold text-gray-800">Total Fournisseurs</h1>
+                        <p class="text-3xl font-semibold text-gray-800">100</p>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+</body>
+</html>
